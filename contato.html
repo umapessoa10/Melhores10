@@ -1,0 +1,342 @@
+<html>
+  <head>
+    <title>Melhores 10</title>
+    <link rel="icon" type="image/x-icon" href="Img/favicon.png">
+    <style>
+      body {
+        font-family: verdana;
+        background-color: white;
+      }
+     
+      .logomenu {
+        background-color: lightgreen;
+        width: 98%;
+        padding: 15px;
+       
+      }
+     
+      .menu {
+        background-color: green;
+        width: 99%;
+        padding: 5px;
+      }
+     
+      .menubtn {
+        background-color: green;
+        padding: 5px;
+        border: none;
+        font-weight: bold;
+        font-size: 20px;
+        cursor: pointer;
+      }
+     
+      .menubtn:hover {
+        background-color: lightgreen;
+       
+      }
+     
+      .box {
+        border-radius: 10px;
+        background-color: lightgreen;
+        display: flex;
+        width: 90%;
+        min-height: 250px;
+        padding: 15px;
+      }
+     
+      .player {
+        padding: 2%;
+        margin: 15px;
+        width: 15%;
+        background-color: green;
+        border-radius: 15px;
+        min-height: 120px;
+      }
+     
+      .pimg {
+        width: 100%;
+        height: 130px;
+        border: solid;
+        border-radius: 15px;
+        border-color: lightgreen;
+       
+      }
+      .pbtn {
+        background-color: lightgreen;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        padding-right: 10px;
+        padding-left: 10px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        margin: 5px;
+        font-weight: bold;
+      }
+      .pbtn:hover {
+        background-color: green;
+        color: lightgreen;
+        border-style: solid;
+      }
+
+      p {
+        padding: 3px;
+      }
+      .more {
+        border: none;
+        border-radius: 10px;
+        padding: 5px;
+        height: 35px;
+        background-color: lightgreen;
+        cursor: pointer;
+        border-color: green;
+        border-style: solid;
+        transition: all 0.3s ease-in-out;
+        font-weight: bold;
+
+
+      }
+
+
+
+      .low {
+        color: gray;
+        margin: 3px;
+      }
+      .fivefour {
+        color: brown;
+        margin: 3px;
+      }
+      .three {
+        color: brown;
+        margin: 3px;
+      }
+      .two {
+        color: lightgray;
+        margin: 3px;
+      }
+      .one {
+        color: yellow;
+        margin: 3px;
+      }
+      .more:hover {
+        border-color: lightgreen;
+        background-color: green;
+        transform: scale(1.1);
+      }
+            .logo {
+        width: 350px;
+        height: 85px;
+      }
+
+      .esportes {
+        background-color: lightgreen;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 10px;
+        width: 200px;
+        position: fixed;
+        left: 15px;
+        border-style: solid;
+        border-color: green;
+      }
+
+      .esportes a {
+        font-weight: bold;
+        color: black;
+        padding: 3px;
+        margin: 3px;
+      }
+
+      .esportes a:hover {
+        background-color: yellow;
+        color: black;
+      }
+
+      hr {
+        width: 100%;
+        height: 3px;
+        border: none;
+        background-color: green;
+      }
+
+      .footer {
+        border-radius: 10px;
+        background-color: lightgreen;
+        border: solid;
+        border-color: green;
+        border-width: 3px;
+        height: 300px;
+        display: flex;
+      }
+      .contato1 {
+        width: 300px;
+        padding: 30px;
+        background-color: lightgreen;
+        border-style: single;
+        border-color: cyan;
+        /*display: flex;*/
+      }
+      .contato2 {
+        width: 300px;
+        background-color: lightgreen;
+        border-style: single;
+        border-color: cyan;
+        position: absolute;
+        right: 15px;
+        padding: 15px;
+        /*display: flex;*/
+      }
+
+      .linkbtn {
+        text-decoration: none;
+      }
+
+        .footerimg {
+          width: 250px;
+          align-self: center;
+        }
+
+
+
+
+
+    .player-text {
+      position: absolute;
+      background-color: lightgreen;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 300px;
+      border-style: solid;
+      border-color: green;
+      border-width: 2px;
+    }
+    </style>
+    <script>
+      function redirect(esporte, pos) {
+        var esportesDiv = document.getElementById('esportesDiv');
+        if (esporte === 'esportes') {
+          //console.log(esportesDiv.style.display)
+          if (esportesDiv.style.display === 'none') {
+           //console.log("none block");
+            esportesDiv.style.display = 'block';
+        }else{
+           esportesDiv.style.display = 'none';
+            //console.log("block none");
+         }
+         
+          } else {
+            if (pos) {
+              window.location.href = `${esporte}.${pos}.html`;
+            }else{
+              window.location.href = `${esporte}.html`;
+            }
+          }
+        }
+        
+        //DIVISOR
+  document.addEventListener('DOMContentLoaded', function() {
+    var spawnButtons = document.querySelectorAll('.spawnButton');
+    var container = document.getElementById('container');
+    var currentDiv = null;
+
+    function spawnDiv(event, customText) {
+      // Remove the existing div if present
+      if (currentDiv) {
+        container.removeChild(currentDiv);
+        currentDiv = null;
+      }
+
+      // Create the div element
+      var div = document.createElement('div');
+      div.className = 'player-text';
+      div.textContent = customText;
+
+      // Create the despawn button
+      var despawnButton = document.createElement('button');
+      despawnButton.textContent = 'Sair';
+      despawnButton.className = 'more';
+      despawnButton.addEventListener('click', function() {
+        container.removeChild(div);
+        currentDiv = null;
+      });
+
+      // Append the despawn button to the div
+      div.appendChild(despawnButton);
+
+      // Set the position of the div below the mouse cursor
+      div.style.position = 'absolute';
+      div.style.left = event.pageX + 'px';
+      div.style.top = (event.pageY + 40) + 'px';
+
+      // Append the div to the container
+      container.appendChild(div);
+      currentDiv = div;
+    }
+
+    for (var i = 0; i < spawnButtons.length; i++) {
+      spawnButtons[i].addEventListener('click', function(event) {
+        var customText = event.target.getAttribute('data-text');
+        spawnDiv(event, customText);
+      });
+    }
+  });
+
+</script>
+  </head>
+  <header>
+    <div class='logomenu'>
+      <h1><img src="Melhores10.png" class="logo"></h1>
+    </div>
+    <div class='menu'>
+      <button class='menubtn' onclick="redirect('index')">Início</button>
+      <button class='menubtn' onclick="redirect('esportes')">Esportes</button>
+      <button class='menubtn'>Contato</button>
+      <button class='menubtn' onclick="redirect('git')">Outros</button>
+    </div>
+  </header>
+  <body>
+
+  <div id="esportesDiv"  class="esportes" style="display: none;">
+    <ul>
+    <li><a href="contato.html">Contato</a></li>
+    <li><a href="futebol.html">Futebol</a></li>
+    <li><a href="basquete.html">Basquete</a></li>
+    <li><a href="tenis.html">Tênis</a></li>
+    <li><a href="git.html">Outros</a></li>
+    </ul>
+    <button class="more" onclick="redirect('esportes')">Sair</button>
+  </div>
+
+
+    <h2>Contato</h2>
+    <br>
+      <p>Os criadores desse website foram Felipe D. e Lourenço M. Felipe realizou a programação inteira do website, desde a concepção até a implementação de cada funcionalidade, garantindo um ambiente interativo e intuitivo para os usuários. Além disso, ele dedicou-se a criar descrições detalhadas e envolventes dos jogadores, oferecendo informações relevantes sobre suas carreiras, conquistas e estilos de jogo.</p>
+  <p>Por outro lado, Lourenço desempenhou um papel fundamental na elaboração da lista de jogadores, garantindo que ela estivesse completa e organizada. Sua expertise em pesquisa e seleção de jogadores notáveis contribuiu para uma seleção diversificada e representativa dos maiores talentos do futebol.</p>
+  <p>O resultado dessa colaboração entre Felipe e Lourenço é um website único e informativo, que permite aos visitantes explorar o fascinante mundo do futebol e conhecer mais sobre os jogadores que marcaram época. Cada detalhe foi cuidadosamente elaborado para proporcionar uma experiência envolvente e enriquecedora aos usuários.</p>
+  <p>É importante ressaltar que os textos presentes neste website foram gerados pelo incrível ChatGPT, uma poderosa ferramenta desenvolvida pela OpenAI. Com sua capacidade de compreender e gerar linguagem natural, o ChatGPT desempenhou um papel fundamental na criação dos conteúdos presentes neste site, tornando-o ainda mais rico e interessante.</p>
+  <p>Agradecemos a todos que visitam o nosso website e esperamos que desfrutem dessa jornada pelo mundo do futebol. Sintam-se à vontade para explorar, descobrir e aprender mais sobre esses jogadores lendários que deixaram sua marca na história do esporte. Obrigado pela visita!</p>
+
+  <br>
+  <hr>
+
+
+
+  </body>
+  <footer>
+    <div class="footer">
+      <div class="contato1">
+      <!--<h3><button class="linkbtn more" style="font-size: 20px"><a href="contato.html">Contato</a></button></h3>-->
+      <h3>Criadores: Felipe D. e Loureço M. - Programação por Felipe D.</h3>
+      <center><img src="Melhores10.png" class="footerimg"></center>
+    </div>
+    
+    <div class="contato2">
+      <!--<h3><button class="linkbtn more" style="font-size: 20px"><a href="contato.html">Contato</a></button></h3>-->
+      <h3>Lembrete: Este top 10 contém apenas a opinião de nossos fundadores, sinta-se livre para opinar conforme você acha</h3>
+
+    </div>
+    </div>
+  </footer>
+</html>

@@ -1,0 +1,446 @@
+<html>
+  <head>
+    <title>Melhores 10</title>
+    <link rel="icon" type="image/x-icon" href="Img/favicon.png">
+    <style>
+      body {
+        font-family: verdana;
+        background-color: white;
+      }
+     
+      .logomenu {
+        background-color: lightgreen;
+        width: 100%;
+        padding: 15px;
+       
+      }
+
+      p {
+        margin: 20px;
+      }
+     
+      .menu {
+        background-color: green;
+        width: 100%;
+        padding: 5px;
+      }
+     
+      .menubtn {
+        background-color: green;
+        padding: 5px;
+        border: none;
+        font-weight: bold;
+        font-size: 20px;
+        cursor: pointer;
+      }
+     
+      .menubtn:hover {
+        background-color: lightgreen;
+       
+      }
+     
+      .box {
+        border-radius: 10px;
+        background-color: lightgreen;
+        display: flex;
+        min-width: 90%;
+        min-height: 250px;
+        padding: 15px;
+        flex-wrap: wrap; /* Allow flex items to wrap to the next line */
+        justify-content: center; /* Center-align flex items horizontally */
+      }
+     
+      .player {
+        padding: 2%;
+        margin: 15px;
+        width: 200px;
+        background-color: green;
+        border-radius: 15px;
+        min-height: 120px;
+        flex-basis: 7%; /* Set the initial width of each player div */
+        flex-grow: 1
+      }
+     
+      .pimg {
+        max-width: 100%;
+        max-height: 100%;
+        width: 80%;
+        height: auto;
+        border-radius: 15px;
+        border-color: lightgreen;
+        object-fit: cover
+       
+      }
+      .pbtn {
+        background-color: lightgreen;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        padding-right: 10px;
+        padding-left: 10px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        margin: 5px;
+        font-weight: bold;
+      }
+      .pbtn:hover {
+        background-color: green;
+        color: lightgreen;
+        border-style: solid;
+      }
+
+      p {
+        padding: 3px;
+      }
+      .more {
+        border: none;
+        border-radius: 10px;
+        padding: 5px;
+        height: 35px;
+        background-color: lightgreen;
+        cursor: pointer;
+        border-color: green;
+        border-style: solid;
+        transition: all 0.3s ease-in-out;
+        font-weight: bold;
+
+
+      }
+
+      .low {
+        color: gray;
+        margin: 3px;
+      }
+      .fivefour {
+        color: brown;
+        margin: 3px;
+      }
+      .three {
+        color: brown;
+        margin: 3px;
+      }
+      .two {
+        color: lightgray;
+        margin: 3px;
+      }
+      .one {
+        color: yellow;
+        margin: 3px;
+      }
+      .more:hover {
+        border-color: lightgreen;
+        background-color: green;
+        transform: scale(1.1);
+      }
+
+      .logo {
+        width: 350px;
+        height: 85px;
+      }
+      h1 {
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+      }
+      .esportes {
+        background-color: lightgreen;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 10px;
+        width: 200px;
+        position: fixed;
+        left: 15px;
+        border-style: solid;
+        border-color: green;
+      }
+
+      .esportes a {
+        font-weight: bold;
+        color: black;
+        padding: 3px;
+        margin: 3px;
+      }
+
+      .esportes a:hover {
+        background-color: yellow;
+        color: black;
+      }
+
+    .player-text {
+      position: absolute;
+      background-color: lightgreen;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 300px;
+      border-style: solid;
+      border-color: green;
+      border-width: 2px;
+    }
+    </style>
+    <script>
+      function redirect(esporte, pos) {
+        var esportesDiv = document.getElementById('esportesDiv');
+        if (esporte === 'esportes') {
+          //console.log(esportesDiv.style.display)
+          if (esportesDiv.style.display === 'none') {
+           //console.log("none block");
+            esportesDiv.style.display = 'block';
+        }else{
+           esportesDiv.style.display = 'none';
+            //console.log("block none");
+         }
+         
+          } else {
+            if (pos) {
+              window.location.href = `${esporte}.${pos}.html`;
+            }else{
+              window.location.href = `${esporte}.html`;
+            }
+          }
+        }
+
+
+          document.addEventListener('DOMContentLoaded', function() {
+    var spawnButtons = document.querySelectorAll('.spawnButton');
+    var container = document.getElementById('container');
+    var currentDiv = null;
+
+    function spawnDiv(event, customText) {
+      // Remove the existing div if present
+      if (currentDiv) {
+        container.removeChild(currentDiv);
+        currentDiv = null;
+      }
+
+      // Create the div element
+      var div = document.createElement('div');
+      div.className = 'player-text';
+      div.textContent = customText;
+
+      // Create the despawn button
+      var despawnButton = document.createElement('button');
+      despawnButton.textContent = 'Sair';
+      despawnButton.className = 'more';
+      despawnButton.addEventListener('click', function() {
+        container.removeChild(div);
+        currentDiv = null;
+      });
+
+      // Append the despawn button to the div
+      div.appendChild(despawnButton);
+
+      // Set the position of the div below the mouse cursor
+      div.style.position = 'absolute';
+      div.style.left = event.pageX + 'px';
+      div.style.top = (event.pageY + 40) + 'px';
+
+      // Append the div to the container
+      container.appendChild(div);
+      currentDiv = div;
+    }
+
+    for (var i = 0; i < spawnButtons.length; i++) {
+      spawnButtons[i].addEventListener('click', function(event) {
+        var customText = event.target.getAttribute('data-text');
+        spawnDiv(event, customText);
+      });
+    }
+  });
+    </script>
+  </head>
+  <header>
+    <div class='logomenu'>
+      <h1><img src="Melhores10.png" class="logo"></h1>
+    </div>
+    <div class='menu'>
+      <button class='menubtn' onclick="redirect('index')">Início</button>
+      <button class='menubtn' onclick="redirect('esportes')">Esportes</button>
+      <button class='menubtn' onclick="redirect('contato')">Contato</button>
+	<button class='menubtn' onclick="redirect('git')">Outros</button>
+    </div>
+  </header>
+  <body>
+  <div id="esportesDiv"  class="esportes" style="display: none;">
+    <ul>
+    <li><a href="contato.html">Contato</a></li>
+    <li><a href="futebol.html">Futebol</a></li>
+    <li><a href="basquete.html">Basquete</a></li>
+    <li><a href="tenis.html">Tênis</a></li>
+    <li><a href="git.html">Outros</a></li>
+    </ul>
+    <button class="more" onclick="redirect('esportes')">Sair</button>
+  </div>
+    <h1>Tenis</h1></center>
+    <br>
+    <p>
+Descubra o nosso top 10 de jogadores de tênis, divididos em duas categorias: atualidade e todos os tempos. Explore a lista para conhecer os talentos que brilham nas quadras hoje e os lendários que marcaram a história do esporte. Desfrute de suas conquistas, habilidades e legados impressionantes, e deixe-se inspirar pela grandiosidade do tênis.</p>
+    <!--<button class="spawnButton" data-text="Custom Text 1">Spawn Div 1</button>
+  <button class="spawnButton" data-text="Custom Text 2">Spawn Div 2</button> -->
+  <div id="container"></div>
+    <h2>Todos os tempos</h2>
+
+    <center><div class="box">
+     
+<div class="player">
+  <img src="Players/Tênis/TDT/connors.jpg" class="pimg">
+  <p class="low">10º</p>
+  <p style="margin: 2px">Jimmy Connors</p>
+  <button class="pbtn spawnButton" data-text="Jimmy Connors, tenista americano, é conhecido por sua energia e intensidade incomparáveis em quadra. Com seu estilo agressivo e golpes poderosos, ele cativou o público ao longo de sua carreira. Connors conquistou oito títulos de Grand Slam e manteve-se competitivo no esporte durante muitos anos, mostrando sua habilidade e determinação incansáveis.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="Players/Tênis/TDT/becker.jpg" class="pimg">
+  <p class="low">9º</p>
+  <p style="margin: 2px">Boris Becker</p>
+  <button class="pbtn spawnButton" data-text="Boris Becker, ex-tenista alemão, ganhou destaque como um dos melhores jogadores da década de 1980. Sua potência e habilidade em servir o tornaram uma força a ser reconhecida. Becker se tornou o mais jovem campeão de Wimbledon em todos os tempos, vencendo o torneio aos 17 anos. Com seis títulos de Grand Slam, ele foi um dos grandes nomes do tênis em sua era.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="Players/Tênis/TDT/lendl.jpg" class="pimg">
+  <p class="low">8º</p>
+  <p style="margin: 2px">Ivan Lendl</p>
+  <button class="pbtn spawnButton" data-text="Ivan Lendl, ex-tenista tcheco-americano, era conhecido por sua potência e consistência em quadra. Sua abordagem agressiva ao jogo e seu golpe de direita poderoso o ajudaram a conquistar oito títulos de Grand Slam. Lendl dominou o tênis nos anos 1980 e deixou uma marca duradoura no esporte com seu jogo sólido e seu foco inabalável.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="Players/Tênis/TDT/gustavo.jpg" class="pimg">
+  <p class="low">7º</p>
+  <p style="margin: 2px">Gustavo Kuerten</p>
+  <button class="pbtn spawnButton" data-text="Gustavo Kuerten, ou 'Guga' é um ex-tenista brasileiro que conquistou o coração dos fãs com seu carisma e estilo de jogo único. Com sua habilidade excepcional em quadras de saibro, Kuerten alcançou três títulos de Grand Slam, incluindo três vitórias em Roland Garros. Sua personalidade carismática e seu amor pelo esporte tornaram-no um ícone do tênis brasileiro.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="Players/Tênis/TDT/rod.jpg" class="pimg">
+  <p class="low">6º</p>
+  <p style="margin: 2px">Rod Laver</p>
+  <button class="pbtn spawnButton" data-text="Rod Laver, australiano conhecido como 'Rocket', é um dos poucos jogadores a conquistar um Grand Slam de carreira, vencendo os quatro principais torneios em um único ano. Sua técnica refinada, potência de golpes e excelente movimentação em quadra faziam dele um oponente formidável. Laver é reconhecido como um dos maiores tenistas da história, com um total de 11 títulos de Grand Slam.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="Players/Tênis/TDT/mcenroe.jpg" class="pimg">
+  <p class="fivefour">5º</p>
+  <p style="margin: 2px">John McEnroe</p>
+  <button class="pbtn spawnButton" data-text="ohn McEnroe, ex-tenista americano, era conhecido tanto por seu talento excepcional quanto por seu temperamento explosivo em quadra. Seus golpes precisos e sua habilidade em jogar na rede o tornaram um adversário temido. McEnroe venceu sete títulos de Grand Slam e sua rivalidade com Björn Borg ficou marcada na história do tênis como uma das mais intensas e memoráveis.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="Players/Tênis/TDT/Borg.jpg" class="pimg">
+  <p class="fivefour">4º</p>
+  <p style="margin: 2px">Björn Borg</p>
+  <button class="pbtn spawnButton" data-text="Björn Borg, lendário tenista sueco, é amplamente considerado um dos melhores jogadores de todos os tempos. Sua técnica impecável, combinada com sua mentalidade de ferro e capacidade de se adaptar a diferentes superfícies, fez dele uma força dominante no tênis nas décadas de 1970 e 1980. Borg conquistou um total de 11 títulos de Grand Slam, incluindo cinco vitórias consecutivas em Wimbledon.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="Players/Tênis/TDT/sampras.jpg" class="pimg">
+  <p class="three">3º</p>
+  <p style="margin: 2px">Pete Sampras</p>
+  <button class="pbtn spawnButton" data-text=" Pete Sampras é um ícone do tênis americano, conhecido por seu incrível serviço e voleio. Durante a década de 1990, ele dominou o esporte com sua habilidade de manter a calma nas situações de maior pressão. Com um total de 14 títulos de Grand Slam, Sampras estabeleceu-se como um dos maiores campeões do tênis, deixando um legado duradouro na história do esporte.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="Players/Tênis/TDT/agassi.jpg" class="pimg">
+  <p class="two">2º</p>
+  <p style="margin: 2px">Andre Agassi</p>
+  <button class="pbtn spawnButton" data-text="Andre Agassi, ex-tenista americano, deixou sua marca no mundo do tênis com seu estilo agressivo e carismático. Conhecido por sua poderosa devolução de saque e golpes de base consistentes, Agassi cativou o público com sua personalidade única dentro e fora das quadras. Além de sua habilidade técnica, ele também se destacou por suas batalhas emocionais e pelo ressurgimento em sua carreira, provando sua determinação e perseverança.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="Players/Tênis/TDT/federer.jpg" class="pimg">
+  <p class="one">1º</p>
+  <p style="margin: 2px">Roger Federer</p>
+  <button class="pbtn spawnButton" data-text="Roger Federer é um tenista suíço considerado um dos maiores de todos os tempos. Com um estilo elegante e técnica impecável, Federer conquistou inúmeros títulos de Grand Slam ao longo de sua carreira, encantando os fãs com seu jogo fluído e habilidades excepcionais. Sua capacidade de adaptação a diferentes superfícies e seu talento para variar o ritmo das jogadas fizeram dele uma lenda do tênis.">Mais</button>
+</div>
+
+
+
+
+     
+      </div></center>
+      <br>
+      <h2>Atualidade</h2>
+      <br>
+          <center><div class="box">
+     
+<div class="player">
+  <img src="players/tênis/atual/tiafoe.jpg" class="pimg">
+  <p class="low">10º</p>
+  <p style="margin: 2px">Frances Tiafoe</p>
+  <button class="pbtn spawnButton" data-text="Frances Tiafoe, tenista americano, é conhecido por sua energia e mentalidade competitiva. Ele é um jogador que se destaca por sua intensidade em quadra e sua habilidade em jogar em diferentes superfícies. Com seu estilo agressivo e golpes poderosos, Tiafoe tem conquistado vitórias impressionantes e continua a mostrar um grande potencial no esporte.">Mais</button>
+</div>
+
+
+<div class="player">
+  <img src="players/tênis/atual/felix.jpg" class="pimg">
+  <p class="low">9º</p>
+  <p style="margin: 2px">Felix Auger-Aliassime</p>
+  <button class="pbtn spawnButton" data-text="Felix Auger-Aliassime, tenista canadense, é considerado uma das promessas do tênis mundial. Com seu jogo atlético e golpes poderosos, Auger-Aliassime tem mostrado um grande potencial em quadra. Apesar de sua juventude, ele já alcançou finais de torneios de alto nível e continua a desenvolver seu jogo para competir com os melhores.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="players/tênis/atual/fritz.jpg" class="pimg">
+  <p class="low">8º</p>
+  <p style="margin: 2px">Taylor Fritz</p>
+  <button class="pbtn spawnButton" data-text="Taylor Fritz, tenista americano, é conhecido por seu poderoso saque e estilo de jogo agressivo. Com apenas 23 anos, Fritz já tem várias vitórias notáveis em seu currículo e tem mostrado um progresso constante em sua carreira. Com sua determinação e talento natural, ele busca deixar sua marca no cenário do tênis mundial.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="players/tênis/atual/tsitsipas.jpg" class="pimg">
+  <p class="low">7º</p>
+  <p style="margin: 2px">Stefanos Tsitsipas</p>
+  <button class="pbtn spawnButton" data-text="Stefanos Tsitsipas, tenista grego, é uma das estrelas em ascensão no circuito profissional. Com seu estilo de jogo agressivo e versátil, Tsitsipas conquistou títulos importantes e alcançou finais de Grand Slam. Sua personalidade carismática e talento inegável o tornaram um favorito dos fãs, enquanto ele continua a competir em alto nível e a buscar grandes conquistas.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="players/tênis/atual/rune.jpg" class="pimg">
+  <p class="low">6º</p>
+  <p style="margin: 2px">Holger Rune</p>
+  <button class="pbtn spawnButton" data-text="Holger Vitus Nødskov Rune, conhecido como Holger Rune, é um jovem talento do tênis dinamarquês. Com apenas 18 anos, Rune já mostrou um jogo poderoso e agressivo, combinado com uma mentalidade competitiva. Sua determinação e ambição prometem um futuro promissor no esporte, e ele continua a evoluir e a impressionar com seu desempenho em quadra.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="players/tênis/atual/ruud.jpg" class="pimg">
+  <p class="fivefour">5º</p>
+  <p style="margin: 2px">Casper Ruud</p>
+  <button class="pbtn spawnButton" data-text="Casper Ruud, tenista norueguês, tem demonstrado um grande crescimento em sua carreira nos últimos anos. Especialista em quadras de saibro, Ruud exibe um jogo sólido e consistente, construindo pontos com paciência e estratégia. Com vitórias significativas e avanços em torneios importantes, ele está se tornando um nome a ser observado no cenário do tênis.">Mais</button>
+</div>
+
+
+<div class="player">
+  <img src="players/tênis/atual/djokovic.jpg" class="pimg">
+  <p class="fivefour">4º</p>
+  <p style="margin: 2px">Novak Djokovic</p>
+  <button class="pbtn spawnButton" data-text="Novak Djokovic, da Sérvia, é um dos maiores tenistas de todos os tempos. Com sua incrível versatilidade, agilidade e habilidades técnicas, Djokovic conquistou numerosos títulos de Grand Slam e estabeleceu-se como um dos jogadores mais consistentes do circuito. Sua determinação e mentalidade de vencedor o impulsionam a alcançar grandes feitos e competir em alto nível.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="players/tênis/atual/medvedev.jpg" class="pimg">
+  <p class="three">3º</p>
+  <p style="margin: 2px">Daniil Medvedev</p>
+  <button class="pbtn spawnButton" data-text="Daniil Medvedev, tenista russo, tem sido uma força dominante no circuito nos últimos anos. Com seu estilo de jogo único, Medvedev combina habilidade defensiva com agressividade controlada, confundindo seus adversários. Ele conquistou títulos importantes, chegou às finais de Grand Slam e alcançou o topo do ranking mundial, consolidando-se como uma das principais ameaças aos jogadores de elite.">Mais</button>
+</div>
+
+
+<div class="player">
+  <img src="players/tênis/atual/sinner.jpg" class="pimg">
+  <p class="two">2º</p>
+  <p style="margin: 2px">Jannik Sinner</p>
+  <button class="pbtn spawnButton" data-text="Jannik Sinner, tenista italiano, tem se destacado como uma das jovens estrelas do tênis mundial. Sinner exibe uma técnica sólida, potência de golpes e maturidade além de seus anos. Sua ascensão meteórica e conquistas notáveis em tão pouco tempo colocam-no como um jogador a ser observado atentamente nos próximos anos.">Mais</button>
+</div>
+
+
+
+<div class="player">
+  <img src="players/tênis/atual/alcaraz.jpg" class="pimg">
+  <p class="one">1º</p>
+  <p style="margin: 2px">Carlos Alcaraz</p>
+  <button class="pbtn spawnButton" data-text="Carlos Alcaraz é um jovem tenista espanhol que tem demonstrado grande talento e promessa no circuito profissional. Com seu jogo agressivo e habilidades técnicas impressionantes, Alcaraz tem conquistado vitórias importantes e despertado o interesse dos fãs do tênis. Sua juventude combinada com sua mentalidade competitiva prometem um futuro brilhante para ele no esporte.">Mais</button>
+</div>
+
+
+
+
+
+     
+      </div></center>
+  </body>
+</html>

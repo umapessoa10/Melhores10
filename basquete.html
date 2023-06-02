@@ -1,0 +1,446 @@
+<html>
+  <head>
+    <title>Melhores 10</title>
+    <link rel="icon" type="image/x-icon" href="Img/favicon.png">
+    <style>
+      body {
+        font-family: verdana;
+        background-color: white;
+      }
+     
+      .logomenu {
+        background-color: lightgreen;
+        width: 100%;
+        padding: 15px;
+       
+      }
+
+      p {
+        margin: 20px;
+      }
+     
+      .menu {
+        background-color: green;
+        width: 100%;
+        padding: 5px;
+      }
+     
+      .menubtn {
+        background-color: green;
+        padding: 5px;
+        border: none;
+        font-weight: bold;
+        font-size: 20px;
+        cursor: pointer;
+      }
+     
+      .menubtn:hover {
+        background-color: lightgreen;
+       
+      }
+     
+      .box {
+        border-radius: 10px;
+        background-color: lightgreen;
+        display: flex;
+        min-width: 90%;
+        min-height: 250px;
+        padding: 15px;
+        flex-wrap: wrap; /* Allow flex items to wrap to the next line */
+        justify-content: center; /* Center-align flex items horizontally */
+      }
+     
+      .player {
+        padding: 2%;
+        margin: 15px;
+        width: 200px;
+        background-color: green;
+        border-radius: 15px;
+        min-height: 120px;
+        flex-basis: 7%; /* Set the initial width of each player div */
+        flex-grow: 1
+      }
+     
+      .pimg {
+        max-width: 100%;
+        max-height: 100%;
+        width: 80%;
+        height: auto;
+        border-radius: 15px;
+        border-color: lightgreen;
+        object-fit: cover
+       
+      }
+      .pbtn {
+        background-color: lightgreen;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        padding-right: 10px;
+        padding-left: 10px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        margin: 5px;
+        font-weight: bold;
+      }
+      .pbtn:hover {
+        background-color: green;
+        color: lightgreen;
+        border-style: solid;
+      }
+
+      p {
+        padding: 3px;
+      }
+      .more {
+        border: none;
+        border-radius: 10px;
+        padding: 5px;
+        height: 35px;
+        background-color: lightgreen;
+        cursor: pointer;
+        border-color: green;
+        border-style: solid;
+        transition: all 0.3s ease-in-out;
+        font-weight: bold;
+
+
+      }
+
+      .low {
+        color: gray;
+        margin: 3px;
+      }
+      .fivefour {
+        color: brown;
+        margin: 3px;
+      }
+      .three {
+        color: brown;
+        margin: 3px;
+      }
+      .two {
+        color: lightgray;
+        margin: 3px;
+      }
+      .one {
+        color: yellow;
+        margin: 3px;
+      }
+      .more:hover {
+        border-color: lightgreen;
+        background-color: green;
+        transform: scale(1.1);
+      }
+
+      .logo {
+        width: 350px;
+        height: 85px;
+      }
+      h1 {
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+      }
+      .esportes {
+        background-color: lightgreen;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 10px;
+        width: 200px;
+        position: fixed;
+        left: 15px;
+        border-style: solid;
+        border-color: green;
+      }
+
+      .esportes a {
+        font-weight: bold;
+        color: black;
+        padding: 3px;
+        margin: 3px;
+      }
+
+      .esportes a:hover {
+        background-color: yellow;
+        color: black;
+      }
+
+    .player-text {
+      position: absolute;
+      background-color: lightgreen;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 300px;
+      border-style: solid;
+      border-color: green;
+      border-width: 2px;
+    }
+    </style>
+    <script>
+      function redirect(esporte, pos) {
+        var esportesDiv = document.getElementById('esportesDiv');
+        if (esporte === 'esportes') {
+          //console.log(esportesDiv.style.display)
+          if (esportesDiv.style.display === 'none') {
+           //console.log("none block");
+            esportesDiv.style.display = 'block';
+        }else{
+           esportesDiv.style.display = 'none';
+            //console.log("block none");
+         }
+         
+          } else {
+            if (pos) {
+              window.location.href = `${esporte}.${pos}.html`;
+            }else{
+              window.location.href = `${esporte}.html`;
+            }
+          }
+        }
+
+
+          document.addEventListener('DOMContentLoaded', function() {
+    var spawnButtons = document.querySelectorAll('.spawnButton');
+    var container = document.getElementById('container');
+    var currentDiv = null;
+
+    function spawnDiv(event, customText) {
+      // Remove the existing div if present
+      if (currentDiv) {
+        container.removeChild(currentDiv);
+        currentDiv = null;
+      }
+
+      // Create the div element
+      var div = document.createElement('div');
+      div.className = 'player-text';
+      div.textContent = customText;
+
+      // Create the despawn button
+      var despawnButton = document.createElement('button');
+      despawnButton.textContent = 'Sair';
+      despawnButton.className = 'more';
+      despawnButton.addEventListener('click', function() {
+        container.removeChild(div);
+        currentDiv = null;
+      });
+
+      // Append the despawn button to the div
+      div.appendChild(despawnButton);
+
+      // Set the position of the div below the mouse cursor
+      div.style.position = 'absolute';
+      div.style.left = event.pageX + 'px';
+      div.style.top = (event.pageY + 40) + 'px';
+
+      // Append the div to the container
+      container.appendChild(div);
+      currentDiv = div;
+    }
+
+    for (var i = 0; i < spawnButtons.length; i++) {
+      spawnButtons[i].addEventListener('click', function(event) {
+        var customText = event.target.getAttribute('data-text');
+        spawnDiv(event, customText);
+      });
+    }
+  });
+    </script>
+  </head>
+  <header>
+    <div class='logomenu'>
+      <h1><img src="Melhores10.png" class="logo"></h1>
+    </div>
+    <div class='menu'>
+
+      <button class='menubtn' onclick="redirect('index')">Início</button>
+      <button class='menubtn' onclick="redirect('esportes')">Esportes</button>
+      <button class='menubtn' onclick="redirect('contato')">Contato</button>
+     <button class='menubtn' onclick="redirect('git')">Outros</button>
+    </div>
+  </header>
+  <body>
+  <div id="esportesDiv"  class="esportes" style="display: none;">
+    <ul>
+    <li><a href="contato.html">Contato</a></li>
+    <li><a href="futebol.html">Futebol</a></li>
+    <li><a href="basquete.html">Basquete</a></li>
+    <li><a href="tenis.html">Tênis</a></li>
+    <li><a href="git.html">Outros</a></li>
+    </ul>
+    <button class="more" onclick="redirect('esportes')">Sair</button>
+  </div>
+    <h1>Basquete</h1></center>
+    <br>
+    <p>
+Descubra o nosso top 10 de jogadores de basquete, divididos em duas categorias: atualidade e todos os tempos. Explore a lista para conhecer os talentos que brilham nas quadras hoje e os lendários que marcaram a história do esporte. Desfrute de suas conquistas, habilidades e legados impressionantes, e deixe-se inspirar pela grandiosidade do basquete.</p>
+    <!--<button class="spawnButton" data-text="Custom Text 1">Spawn Div 1</button>
+  <button class="spawnButton" data-text="Custom Text 2">Spawn Div 2</button> -->
+  <div id="container"></div>
+    <h2>Todos os tempos</h2>
+
+    <center><div class="box">
+     
+<div class="player">
+  <img src="players/basquete/tdt/Julius.jpg" class="pimg">
+  <p class="low">10º</p>
+  <p style="margin: 2px">Julius Erving</p>
+  <button class="pbtn spawnButton" data-text="Shaquille O'Neal, também conhecido como 'Shaq', foi um dos jogadores mais dominantes e físicos da história do basquete. Sua combinação de tamanho, força e agilidade o tornou praticamente imparável no jogo interior. O'Neal conquistou quatro títulos da NBA e deixou uma marca indelével na história do esporte.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="players/basquete/tdt/Barkley.jpg" class="pimg">
+  <p class="low">9º</p>
+  <p style="margin: 2px">Charles Barkley</p>
+  <button class="pbtn spawnButton" data-text="Charles Barkley é conhecido por sua personalidade carismática e seu estilo de jogo explosivo. Apelidado de 'Sir Charles', ele foi um dos jogadores mais versáteis de sua época, destacando-se tanto na pontuação quanto nos rebotes. Embora Barkley não tenha conquistado um título da NBA, sua paixão e talento dentro de quadra o solidificaram como uma figura amada pelos fãs e um dos grandes jogadores de basquete.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="players/basquete/tdt/Malone.jpg" class="pimg">
+  <p class="low">8º</p>
+  <p style="margin: 2px">Karl Malone</p>
+  <button class="pbtn spawnButton" data-text="Karl Malone, também conhecido como 'The Mailman', é um dos maiores cestinhas da história da NBA. Sua força física e habilidades ofensivas o tornaram um dos jogadores mais temidos de sua época. Malone passou a maior parte de sua carreira no Utah Jazz e formou uma dupla dinâmica com o armador John Stockton. Sua consistência e longevidade como jogador o destacam como uma lenda do basquete.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="players/basquete/tdt/Chamberlain.jpg" class="pimg">
+  <p class="low">7º</p>
+  <p style="margin: 2px">Wilt Chamberlain</p>
+  <button class="pbtn spawnButton" data-text="Wilt Chamberlain foi um jogador extraordinário e dominante. Sua presença física e sua capacidade de marcar pontos o destacaram no esporte. Chamberlain detém inúmeros recordes na NBA, incluindo a icônica marca de 100 pontos em um único jogo. Seus feitos atléticos e seu impacto duradouro no basquete estabelecem seu lugar entre os maiores jogadores de todos os tempos.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="players/basquete/tdt/Duncan.jpg" class="pimg">
+  <p class="low">6º</p>
+  <p style="margin: 2px">Tim Duncan</p>
+  <button class="pbtn spawnButton" data-text="Tim Duncan é um dos jogadores mais consistentes e fundamentais da história da NBA. Conhecido por sua presença dominante no jogo interior, Duncan liderou o San Antonio Spurs a cinco títulos da NBA ao longo de sua carreira. Sua ética de trabalho incansável, habilidades defensivas excepcionais e liderança tranquila fizeram dele um dos jogadores mais respeitados de sua geração.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="players/basquete/tdt/Johnson.jpg" class="pimg">
+  <p class="fivefour">5º</p>
+  <p style="margin: 2px">Magic Johnson</p>
+  <button class="pbtn spawnButton" data-text="Magic Johnson é um dos maiores armadores da história do basquete. Sua visão de jogo excepcional, habilidades de passe e liderança transformaram o jogo. Johnson conquistou cinco títulos da NBA com o Los Angeles Lakers e sua rivalidade com Larry Bird se tornou lendária. Sua personalidade carismática e estilo de jogo cativante o tornaram um ícone do esporte.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="players/basquete/tdt/Larry.jpg" class="pimg">
+  <p class="fivefour">4º</p>
+  <p style="margin: 2px">Larry Bird</p>
+  <button class="pbtn spawnButton" data-text="Larry Bird é amplamente considerado um dos maiores jogadores de basquete de todos os tempos. Sua habilidade de arremesso precisa, inteligência tática e liderança fizeram dele uma figura emblemática do esporte. Bird conquistou três títulos da NBA com o Boston Celtics e deixou sua marca como um dos jogadores mais completos e vencedores da história.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="players/basquete/TdT/KAJ.jpg" class="pimg">
+  <p class="three">3º</p>
+  <p style="margin: 2px">Kareem Abdul-Jabbar</p>
+  <button class="pbtn spawnButton" data-text="Kareem Abdul-Jabbar é um dos jogadores mais dominantes da história do basquete. Ele detém o recorde de pontos da NBA e conquistou seis títulos da NBA ao longo de sua carreira. Sua lendária habilidade de arremesso, alcance e impacto defensivo fizeram dele uma figura lendária do esporte.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="Players/Basquete/TDT/kb.jpg" class="pimg">
+  <p class="two">2º</p>
+  <p style="margin: 2px">Kobe Bryant</p>
+  <button class="pbtn spawnButton" data-text="Kobe Bryant foi um jogador icônico, conhecido por sua ética de trabalho impecável e habilidades extraordinárias. Ele conquistou cinco títulos da NBA com o Los Angeles Lakers e deixou sua marca como um dos maiores pontuadores da história do basquete. O legado de Bryant transcende o esporte e ele é reverenciado como uma inspiração para muitos.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="Players/Basquete/TDT/mj.jpg" class="pimg">
+  <p class="one">1º</p>
+  <p style="margin: 2px">Michael Jordan</p>
+  <button class="pbtn spawnButton" data-text="Michael Jordan é amplamente considerado o maior jogador de basquete de todos os tempos. Sua combinação de habilidades atléticas, talento ofensivo e competitividade feroz o elevaram a um patamar superior. Jordan conquistou seis títulos da NBA com o Chicago Bulls e sua influência transcendeu o esporte, tornando-o um ícone global.">Mais</button>
+</div>
+
+
+
+
+     
+      </div></center>
+      <br>
+      <h2>Atualidade</h2>
+      <br>
+          <center><div class="box">
+     
+<div class="player">
+  <img src="players/basquete/atual/anthony.jpg" class="pimg">
+  <p class="low">10º</p>
+  <p style="margin: 2px">Anthony Davis</p>
+  <button class="pbtn spawnButton" data-text="Anthony Davis é um jogador talentoso e versátil que atua como ala-pivô ou pivô. Sua combinação de tamanho, habilidades ofensivas e defensivas o torna uma força dominante em quadra. Davis é conhecido por sua capacidade de bloquear arremessos, pegar rebotes e marcar pontos de forma eficiente, sendo uma peça fundamental para o sucesso do Los Angeles Lakers.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="players/basquete/atual/kawhi.jpg" class="pimg">
+  <p class="low">9º</p>
+  <p style="margin: 2px">Kawhi Leonard</p>
+  <button class="pbtn spawnButton" data-text="Kawhi Leonard é um dos jogadores mais completos e habilidosos da NBA. Ele é um ala com excelentes habilidades defensivas e uma capacidade impressionante de marcar pontos. Leonard ganhou fama por sua atuação dominante nos playoffs e por ser um jogador calmo e confiante em momentos cruciais. Ele conquistou o título da NBA com dois times diferentes, o San Antonio Spurs e o Toronto Raptors.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="players/basquete/atual/lebron.jpg" class="pimg">
+  <p class="low">8º</p>
+  <p style="margin: 2px">LeBron James</p>
+  <button class="pbtn spawnButton" data-text="LeBron James é um dos maiores jogadores de todos os tempos. Sua combinação de tamanho, força e habilidade atlética o torna um dos jogadores mais dominantes da NBA. Além de sua capacidade de pontuar, LeBron é um excelente passador e um líder em quadra. Ele conquistou vários títulos da NBA e é admirado por sua longevidade e consistência em alto nível.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="players/basquete/atual/nikola.jpg" class="pimg">
+  <p class="low">7º</p>
+  <p style="margin: 2px">Nikola Jokic</p>
+  <button class="pbtn spawnButton" data-text="Nikola Jokic é um pivô talentoso e único em sua abordagem para o jogo. Ele é conhecido por sua habilidade excepcional de passe e seu alto QI de basquete. Jokic tem uma capacidade impressionante de pontuar, pegar rebotes e encontrar seus companheiros de equipe em posições vantajosas. Ele se tornou o primeiro pivô a ganhar o prêmio de Jogador Mais Valioso (MVP) da NBA desde 2000.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="players/basquete/atual/jimmy.jpg" class="pimg">
+  <p class="low">6º</p>
+  <p style="margin: 2px">Jimmy Butler</p>
+  <button class="pbtn spawnButton" data-text="Jimmy Butler é um jogador que se destaca por sua intensidade e mentalidade competitiva. Ele é um ala que pode pontuar em várias formas, além de ser um defensor sólido. Butler é conhecido por sua capacidade de liderar equipes e elevar seu jogo nos momentos decisivos. Sua atuação durante as finais da NBA em 2020 foi especialmente notável, levando o Miami Heat a uma série competitiva contra o Los Angeles Lakers.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="players/basquete/atual/joel.jpg" class="pimg">
+  <p class="fivefour">5º</p>
+  <p style="margin: 2px">Joel Embiid</p>
+  <button class="pbtn spawnButton" data-text="Joel Embiid é um pivô dominante com uma combinação impressionante de tamanho, força e habilidade. Ele é uma força dentro do garrafão, capaz de pontuar de diversas maneiras e bloquear arremessos. Embiid é também um reboteiro talentoso e um jogador defensivo impactante. Sua presença em quadra é vital para o sucesso do Philadelphia 76ers, e ele é considerado um dos melhores jogadores da NBA em sua posição.">Mais</button>
+</div>
+
+
+<div class="player">
+  <img src="players/basquete/atual/kevin.jpg" class="pimg">
+  <p class="fivefour">4º</p>
+  <p style="margin: 2px">Kevin Durant (KD)</p>
+  <button class="pbtn spawnButton" data-text="Kevin Durant é um jogador excepcionalmente talentoso e versátil. Com sua altura imponente e habilidade de arremesso precisa, Durant é capaz de marcar pontos de maneira consistente. Além disso, sua capacidade de jogar em várias posições e sua combinação de tamanho e habilidade o tornam um dos jogadores mais difíceis de serem marcados na liga. Durant conquistou múltiplos títulos da NBA e é reconhecido como um dos melhores jogadores de sua geração.">Mais</button>
+</div>
+
+
+
+
+
+<div class="player">
+  <img src="players/basquete/atual/jayson.jpg" class="pimg">
+  <p class="three">3º</p>
+  <p style="margin: 2px">Jayson Tatum</p>
+  <button class="pbtn spawnButton" data-text="Jayson Tatum emergiu como um talento promissor na NBA. Com sua habilidade de pontuar em diversas situações e um arsenal de movimentos ofensivos, Tatum se tornou uma peça central no Boston Celtics. Sua capacidade de criar seu próprio arremesso e desempenhar um papel de destaque em jogos importantes demonstra seu potencial para se tornar um dos grandes jogadores da liga.">Mais</button>
+</div>
+
+<div class="player">
+  <img src="players/basquete/atual/stephen.jpg" class="pimg">
+  <p class="two">2º</p>
+  <p style="margin: 2px">Stephen Curry</p>
+  <button class="pbtn spawnButton" data-text="Stephen Curry é um dos maiores arremessadores de todos os tempos. Com um alcance incrível e um domínio excepcional da técnica de arremesso, Curry revolucionou o jogo ao popularizar os arremessos de longa distância. Sua habilidade de criar espaço, visão de jogo e liderança no Golden State Warriors o levaram a múltiplos títulos da NBA e a uma influência duradoura na forma como o basquete é jogado.">Mais</button>
+</div>
+
+
+
+<div class="player">
+  <img src="players/basquete/atual/Giannis.jpg" class="pimg">
+  <p class="one">1º</p>
+  <p style="margin: 2px">Giannis Antetokounmpo</p>
+  <button class="pbtn spawnButton" data-text="Giannis Antetokounmpo, também conhecido como 'The Greek Freak', é um jogador dominante que combina habilidades atléticas incríveis com uma ética de trabalho incansável. Sua versatilidade em quadra, combinada com sua capacidade de pontuar, pegar rebotes e proteger o aro, o tornam uma força imparável. Além disso, sua determinação e humildade fora das quadras o transformaram em um dos jogadores mais populares e adorados da NBA.">Mais</button>
+</div>
+
+
+     
+      </div></center>
+  </body>
+</html>

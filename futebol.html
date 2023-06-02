@@ -1,0 +1,439 @@
+<html>
+  <head>
+    <title>Melhores 10</title>
+    <link rel="icon" type="image/x-icon" href="Img/favicon.png">
+    <style>
+      body {
+        font-family: verdana;
+        background-color: white;
+      }
+     
+      .logomenu {
+        background-color: lightgreen;
+        width: 100%;
+        padding: 15px;
+       
+      }
+
+      p {
+        margin: 20px;
+      }
+     
+      .menu {
+        background-color: green;
+        width: 100%;
+        padding: 5px;
+      }
+     
+      .menubtn {
+        background-color: green;
+        padding: 5px;
+        border: none;
+        font-weight: bold;
+        font-size: 20px;
+        cursor: pointer;
+      }
+     
+      .menubtn:hover {
+        background-color: lightgreen;
+       
+      }
+     
+      .box {
+        border-radius: 10px;
+        background-color: lightgreen;
+        display: flex;
+        min-width: 90%;
+        min-height: 250px;
+        padding: 15px;
+        flex-wrap: wrap; /* Allow flex items to wrap to the next line */
+        justify-content: center; /* Center-align flex items horizontally */
+      }
+     
+      .player {
+        padding: 2%;
+        margin: 15px;
+        width: 200px;
+        background-color: green;
+        border-radius: 15px;
+        min-height: 120px;
+        flex-basis: 7%; /* Set the initial width of each player div */
+        flex-grow: 1
+      }
+     
+      .pimg {
+        max-width: 100%;
+        max-height: 100%;
+        width: 80%;
+        height: auto;
+        border-radius: 15px;
+        border-color: lightgreen;
+        object-fit: cover
+       
+      }
+      .pbtn {
+        background-color: lightgreen;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        padding-right: 10px;
+        padding-left: 10px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        margin: 5px;
+        font-weight: bold;
+      }
+      .pbtn:hover {
+        background-color: green;
+        color: lightgreen;
+        border-style: solid;
+      }
+
+      p {
+        padding: 3px;
+      }
+      .more {
+        border: none;
+        border-radius: 10px;
+        padding: 5px;
+        height: 35px;
+        background-color: lightgreen;
+        cursor: pointer;
+        border-color: green;
+        border-style: solid;
+        transition: all 0.3s ease-in-out;
+        font-weight: bold;
+
+
+      }
+
+      .low {
+        color: gray;
+        margin: 3px;
+      }
+      .fivefour {
+        color: brown;
+        margin: 3px;
+      }
+      .three {
+        color: brown;
+        margin: 3px;
+      }
+      .two {
+        color: lightgray;
+        margin: 3px;
+      }
+      .one {
+        color: yellow;
+        margin: 3px;
+      }
+      .more:hover {
+        border-color: lightgreen;
+        background-color: green;
+        transform: scale(1.1);
+      }
+
+      .logo {
+        width: 350px;
+        height: 85px;
+      }
+      h1 {
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+      }
+      .esportes {
+        background-color: lightgreen;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 10px;
+        width: 200px;
+        position: fixed;
+        left: 15px;
+        border-style: solid;
+        border-color: green;
+      }
+
+      .esportes a {
+        font-weight: bold;
+        color: black;
+        padding: 3px;
+        margin: 3px;
+      }
+
+      .esportes a:hover {
+        background-color: yellow;
+        color: black;
+      }
+
+    .player-text {
+      position: absolute;
+      background-color: lightgreen;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 300px;
+      border-style: solid;
+      border-color: green;
+      border-width: 2px;
+    }
+    </style>
+    <script>
+      function redirect(esporte, pos) {
+        var esportesDiv = document.getElementById('esportesDiv');
+        if (esporte === 'esportes') {
+          //console.log(esportesDiv.style.display)
+          if (esportesDiv.style.display === 'none') {
+           //console.log("none block");
+            esportesDiv.style.display = 'block';
+        }else{
+           esportesDiv.style.display = 'none';
+            //console.log("block none");
+         }
+         
+          } else {
+            if (pos) {
+              window.location.href = `${esporte}.${pos}.html`;
+            }else{
+              window.location.href = `${esporte}.html`;
+            }
+          }
+        }
+
+
+          document.addEventListener('DOMContentLoaded', function() {
+    var spawnButtons = document.querySelectorAll('.spawnButton');
+    var container = document.getElementById('container');
+    var currentDiv = null;
+
+    function spawnDiv(event, customText) {
+      // Remove the existing div if present
+      if (currentDiv) {
+        container.removeChild(currentDiv);
+        currentDiv = null;
+      }
+
+      // Create the div element
+      var div = document.createElement('div');
+      div.className = 'player-text';
+      div.textContent = customText;
+
+      // Create the despawn button
+      var despawnButton = document.createElement('button');
+      despawnButton.textContent = 'Sair';
+      despawnButton.className = 'more';
+      despawnButton.addEventListener('click', function() {
+        container.removeChild(div);
+        currentDiv = null;
+      });
+
+      // Append the despawn button to the div
+      div.appendChild(despawnButton);
+
+      // Set the position of the div below the mouse cursor
+      div.style.position = 'absolute';
+      div.style.left = event.pageX + 'px';
+      div.style.top = (event.pageY + 40) + 'px';
+
+      // Append the div to the container
+      container.appendChild(div);
+      currentDiv = div;
+    }
+
+    for (var i = 0; i < spawnButtons.length; i++) {
+      spawnButtons[i].addEventListener('click', function(event) {
+        var customText = event.target.getAttribute('data-text');
+        spawnDiv(event, customText);
+      });
+    }
+  });
+    </script>
+  </head>
+  <header>
+    <div class='logomenu'>
+      <h1><img src="Melhores10.png" class="logo"></h1>
+    </div>
+    <div class='menu'>
+      
+      <button class='menubtn' onclick="redirect('index')">Início</button>
+      <button class='menubtn' onclick="redirect('esportes')">Esportes</button>
+      <button class='menubtn' onclick="redirect('contato')">Contato</button>
+	<button class='menubtn' onclick="redirect('git')">Outros</button>
+    </div>
+  </header>
+  <body>
+  <div id="esportesDiv"  class="esportes" style="display: none;">
+    <ul>
+    <li><a href="contato.html">Contato</a></li>
+    <li><a href="futebol.html">Futebol</a></li>
+    <li><a href="basquete.html">Basquete</a></li>
+    <li><a href="tenis.html">Tênis</a></li>
+    <li><a href="git.html">Outros</a></li>
+    </ul>
+    <button class="more" onclick="redirect('esportes')">Sair</button>
+  </div>
+    <h1>Futebol</h1></center>
+    <br>
+    <p>
+Descubra o nosso top 10 de jogadores de futebol, divididos em duas categorias: atualidade e todos os tempos. Explore a lista para conhecer os talentos que brilham nos campos hoje e os lendários que marcaram a história do esporte. Desfrute de suas conquistas, habilidades e legados impressionantes, e deixe-se inspirar pela grandiosidade do futebol.</p>
+    <!--<button class="spawnButton" data-text="Custom Text 1">Spawn Div 1</button>
+  <button class="spawnButton" data-text="Custom Text 2">Spawn Div 2</button> -->
+  <div id="container"></div>
+    <h2>Atualidade</h2>
+
+    <center><div class="box">
+     
+    <div class="player">
+      <img src="Players/Futebol/Atual/Belingham.jpeg" class="pimg">
+      <p class="low">10º</p>
+      <p style="margin: 2px">Bellingham</p>
+      <button class="pbtn spawnButton" data-text="Jude Bellingham, o jovem meio-campista inglês, ganhou fama com suas performances sólidas e maturidade além da idade. Sua fisicalidade, habilidade de passe e inteligência em campo chamaram a atenção de muitos clubes de ponta. O rápido desenvolvimento de Bellingham indica um futuro promissor no mundo do futebol." >Mais</button>
+    </div>
+
+    <div class="player">
+      <img src="Players/Futebol/Atual/odegaard.jpg" class="pimg">
+      <p class="low">9º</p>
+      <p style="margin: 2px">Odegaard</p>
+      <button class="pbtn spawnButton" data-text="Martin Odegaard é um talentoso armador conhecido por suas habilidades técnicas e visão de jogo. Apesar de sua pouca idade, Odegaard já demonstrou grande potencial com atuações impressionantes no clube e na seleção nacional. Sua capacidade de ditar o ritmo do jogo e criar oportunidades de gol tem sido fundamental para a equipe." >Mais</button>
+    </div>
+
+    <div class="player">
+      <img src="Players/Futebol/Atual/martinelli.jpeg" class="pimg">
+      <p class="low">8º</p>
+      <p style="margin: 2px">Martinelli</p>
+      <button class="pbtn spawnButton" data-text="Gabriel Martinelli, o jovem atacante brasileiro, demonstrou um imenso potencial e promessa. Apesar de sua pouca idade, Martinelli mostrou uma notável compostura e maturidade em campo. Sua versatilidade, instinto de gol e ritmo de trabalho o tornam um jogador com um futuro brilhante pela frente." >Mais</button>
+    </div>
+
+    <div class="player">
+      <img src="Players/Futebol/Atual/mbappe.jpg" class="pimg">
+      <p class="low">7º</p>
+      <p style="margin: 2px">Mbappé</p>
+      <button class="pbtn spawnButton" data-text="Kylian Mbappé é um verdadeiro fenômeno no mundo do futebol. Sua velocidade alucinante, agilidade e capacidade de marcar gols o tornaram um dos jogadores mais empolgantes de se assistir. As performances revolucionárias de Mbappé no cenário internacional e no Paris Saint-Germain o catapultaram para o reino da elite do futebol." >Mais</button>
+    </div>
+
+    <div class="player">
+      <img src="Players/Futebol/Atual/casemiro.jpg" class="pimg">
+      <p class="low">6º</p>
+      <p style="margin: 2px">Casemiro</p>
+      <button class="pbtn spawnButton" data-text="Casemiro, o meio-campista defensivo brasileiro, é conhecido por suas fortes habilidades defensivas e consciência tática. Ele desempenha um papel crucial na proteção da defesa e na interrupção dos ataques adversários. A presença física, as habilidades de interceptação e a capacidade de vencer duelos aéreos de Casemiro o tornam um componente essencial de qualquer equipe de sucesso." >Mais</button>
+    </div>
+
+    <div class="player">
+      <img src="Players/Futebol/Atual/bernardosilva.jpg" class="pimg">
+      <p class="fivefour">5º</p>
+      <p style="margin: 2px">Bernardo Silva</p>
+      <button class="pbtn spawnButton" data-text="Bernardo Silva é um meio-campista altamente talentoso, conhecido por suas habilidades técnicas e criatividade. Sua capacidade de controlar o jogo e criar oportunidades de gol para seus companheiros de equipe é excepcional. O controle próximo da bola, a tomada de decisões rápidas e a versatilidade de Silva o tornam um jogador importante tanto para o Manchester City quanto para a seleção portuguesa." >Mais</button>
+    </div>
+
+    <br>
+
+    <div class="player">
+      <img src="Players/Futebol/Atual/rubendias.jpg" class="pimg">
+      <p class="fivefour">4º</p>
+      <p style="margin: 2px">Ruben Dias</p>
+      <button class="pbtn spawnButton" data-text="Ruben Dias se estabeleceu rapidamente como um dos melhores defensores do jogo. Sua compostura, liderança e habilidades defensivas têm sido fundamentais para o sucesso do Manchester City. A capacidade de Dias de ler o jogo e fazer desarmes e interceptações cruciais lhe rendeu muitos elogios e reconhecimento." >Mais</button>
+    </div>
+
+    <div class="player">
+      <img src="Players/Futebol/Atual/debruyne.jpg" class="pimg">
+      <p class="three">3º</p>
+      <p style="margin: 2px">De Bruyne</p>
+      <button class="pbtn spawnButton" data-text="Kevin De Bruyne é amplamente considerado um dos melhores meio-campistas do mundo. Sua visão, precisão de passes e capacidade de marcar gols o tornam um jogador completo. A presença de De Bruyne em campo tem um impacto significativo no desempenho de sua equipe, e ele tem apresentado consistentemente desempenhos excepcionais no mais alto nível." >Mais</button>
+    </div>
+
+    <div class="player">
+      <img src="Players/Futebol/Atual/vinicius.jpg" class="pimg">
+      <p class="two">2º</p>
+      <p style="margin: 2px">Vínicius Jr.</p>
+      <button class="pbtn spawnButton" data-text="Vinicius Junior, o prodígio brasileiro, é conhecido por sua velocidade eletrizante e habilidade com a bola. Ele entrou em cena ainda jovem e demonstrou um grande potencial para se tornar um dos melhores jogadores do mundo. A capacidade de Vinicius de superar os defensores e criar oportunidades de gol o torna um recurso valioso para qualquer equipe." >Mais</button>
+    </div>
+
+    <div class="player">
+      <img src="Players/Futebol/Atual/haaland.jpg" class="pimg">
+      <p class="one">1º</p>
+      <p style="margin: 2px">Haaland</p>
+      <button class="pbtn spawnButton" data-text="Erling Haaland é um dos atacantes mais temidos do mundo. Sua combinação de força física, velocidade e habilidade de finalização o torna um goleador nato. Haaland tem impressionado com suas performances arrebatadoras tanto no clube quanto na seleção norueguesa, e ele é considerado por muitos como o futuro do futebol." >Mais</button>
+    </div>
+
+
+     
+      </div></center>
+      <br>
+      <h2>Todos os tempos</h2>
+      <br>
+          <center><div class="box">
+     
+<div class="player">
+  <img src="Players/Futebol/TDT/Matthaus.jpg" class="pimg">
+  <p class="low">10º</p>
+  <p style="margin: 2px">Matthaus</p>
+  <button class="pbtn spawnButton" data-text="Lothar Matthaus, um meio-campista dominante e versátil, era conhecido por suas qualidades de liderança e habilidades excepcionais em todas as áreas. Ele desempenhou um papel fundamental no sucesso da Alemanha, incluindo a vitória na Copa do Mundo de 1990. A visão, a capacidade de passe e a proeza de marcar gols de Matthaus fazem dele um dos maiores meio-campistas da história do futebol." >Mais</button>
+</div>
+
+<div class="player">
+  <img src="Players/Futebol/TDT/gullit.jpg" class="pimg">
+  <p class="low">9º</p>
+  <p style="margin: 2px">Gullit</p>
+  <button class="pbtn spawnButton" data-text="Ruud Gullit foi um jogador versátil e influente, conhecido por sua elegância, capacidade atlética e habilidade. Sua capacidade de se destacar em várias posições, inclusive no meio-campo e no ataque, fez dele uma figura importante em equipes de sucesso como o Milan e a seleção holandesa. A presença física e as habilidades técnicas de Gullit lhe renderam inúmeros elogios e reconhecimento." >Mais</button>
+</div>
+
+<div class="player">
+  <img src="Players/Futebol/TDT/Yashin.jpeg" class="pimg">
+  <p class="low">8º</p>
+  <p style="margin: 2px">Yashin</p>
+  <button class="pbtn spawnButton" data-text="Lev Yashin, conhecido como 'Aranha Negra', é amplamente considerado um dos maiores goleiros de todos os tempos. Sua agilidade, capacidade de parar chutes e presença dominante na área estabeleceram novos padrões para os goleiros. As notáveis atuações de Yashin pela União Soviética e seu impacto no esporte deixaram um legado duradouro." >Mais</button>
+</div>
+
+<div class="player">
+  <img src="Players/Futebol/TDT/rivaldo.jpg" class="pimg">
+  <p class="low">7º</p>
+  <p style="margin: 2px">Rivaldo</p>
+  <button class="pbtn spawnButton" data-text="Rivaldo era um meio-campista de ataque muito talentoso, conhecido por suas habilidades técnicas, chutes de longa distância e habilidade em cobranças de falta. Suas atuações no Barcelona e na seleção brasileira mostraram sua capacidade de marcar gols cruciais e criar oportunidades para seus companheiros de equipe. A elegância e a finesse de Rivaldo em campo fazem dele uma figura lendária na história do esporte." >Mais</button>
+</div>
+
+<div class="player">
+  <img src="Players/Futebol/TDT/dinho.jpg" class="pimg">
+  <p class="low">6º</p>
+  <p style="margin: 2px">Dinho</p>
+  <button class="pbtn spawnButton" data-text="O estilo de jogo único e as habilidades incríveis de Ronaldinho o tornaram um dos favoritos dos torcedores em todo o mundo. Sua criatividade, capacidade de drible e talento trouxeram alegria aos espectadores e o tornaram um dos jogadores mais empolgantes de se assistir. O sucesso de Ronaldinho no Barcelona, bem como suas contribuições para a seleção brasileira, solidificam seu lugar entre os maiores do futebol." >Mais</button>
+</div>
+
+<div class="player">
+  <img src="Players/Futebol/TDT/Beckenbauer.png" class="pimg">
+  <p class="fivefour">5º</p>
+  <p style="margin: 2px">Beckenbauer</p>
+  <button class="pbtn spawnButton" data-text="Franz Beckenbauer, muitas vezes chamado de 'Der Kaiser', foi um zagueiro versátil e elegante. Ele revolucionou a função de goleiro e desempenhou um papel crucial no sucesso da Alemanha. As qualidades de liderança, a capacidade técnica e a inteligência tática de Beckenbauer fazem dele um dos jogadores mais influentes de todos os tempos." >Mais</button>
+</div>
+
+<br>
+
+<div class="player">
+  <img src="Players/Futebol/TDT/R9.jpg" class="pimg">
+  <p class="fivefour">4º</p>
+  <p style="margin: 2px">R9</p>
+  <button class="pbtn spawnButton" data-text="Ronaldo, também conhecido como 'R9', foi um artilheiro prolífico com velocidade, agilidade e habilidade extraordinárias. Sua capacidade de vencer os zagueiros com facilidade e sua finalização certeira o tornaram um pesadelo para as equipes adversárias. As atuações de Ronaldo em clubes como Barcelona, Inter de Milão e Real Madrid, bem como o sucesso na Copa do Mundo, consolidaram seu status como um dos maiores atacantes da história." >Mais</button>
+</div>
+
+<div class="player">
+  <img src="Players/Futebol/TDT/Cruyff.jpg" class="pimg">
+  <p class="three">3º</p>
+  <p style="margin: 2px">Cruyff</p>
+  <button class="pbtn spawnButton" data-text="Johan Cruyff foi um jogador de futebol visionário que revolucionou o esporte com seu estilo de jogo inovador conhecido como 'Futebol Total'. Suas habilidades técnicas, inteligência e capacidade de liderança o tornaram uma força motriz por trás do sucesso da Holanda e do Barcelona. A influência de Cruyff nas táticas do futebol moderno e seu impacto como jogador e técnico são altamente reverenciados." >Mais</button>
+</div>
+
+<div class="player">
+  <img src="Players/Futebol/TDT/Maradona.jpg" class="pimg">
+  <p class="two">2º</p>
+  <p style="margin: 2px">Maradona</p>
+  <button class="pbtn spawnButton" data-text="Diego Maradona é um ícone do futebol conhecido por suas habilidades excepcionais de drible, criatividade e o infame gol da 'Mão de Deus'. Suas atuações hipnotizantes, especialmente na Copa do Mundo de 1986, deixaram uma marca indelével na história do esporte. O impacto de Maradona no esporte e seu talento inigualável fazem dele um dos maiores jogadores de todos os tempos." >Mais</button>
+</div>
+
+<div class="player">
+  <img src="Players/Futebol/TDT/Pele.jpg" class="pimg">
+  <p class="one">1º</p>
+  <p style="margin: 2px">Pelé</p>
+  <button class="pbtn spawnButton" data-text="Pelé é amplamente considerado um dos maiores jogadores de futebol de todos os tempos. Suas incríveis habilidades, agilidade e capacidade de marcar gols o diferenciam de seus colegas. O sucesso de Pelé em ganhar várias Copas do Mundo e seu excepcional recorde de gols solidificam seu status como uma verdadeira lenda do esporte." >Mais</button>
+</div>
+     
+      </div></center>
+  </body>
+</html>

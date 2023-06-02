@@ -1,0 +1,605 @@
+<html>
+  <head>
+    <title>Melhores 10</title>
+    <link rel="icon" type="image/x-icon" href="Img/favicon.png">
+    <style>
+      body {
+        font-family: verdana;
+        background-color: white;
+      }
+     
+      .logomenu {
+        background-color: lightgreen;
+        width: 98%;
+        padding: 15px;
+       
+      }
+     
+      .menu {
+        background-color: green;
+        width: 99%;
+        padding: 5px;
+      }
+     
+      .menubtn {
+        background-color: green;
+        padding: 5px;
+        border: none;
+        font-weight: bold;
+        font-size: 20px;
+        cursor: pointer;
+      }
+     
+      .menubtn:hover {
+        background-color: lightgreen;
+       
+      }
+     
+      .box {
+        border-radius: 10px;
+        background-color: lightgreen;
+        display: flex;
+        width: 90%;
+        min-height: 250px;
+        padding: 15px;
+      }
+     
+      .player {
+        padding: 2%;
+        margin: 15px;
+        width: 15%;
+        background-color: green;
+        border-radius: 15px;
+        min-height: 120px;
+      }
+     
+      .pimg {
+        max-width: 100%;
+        max-height: 100%;
+        width: 80%;
+        height: auto;
+        border-radius: 15px;
+        border-color: lightgreen;
+        object-fit: cover
+      }
+      .pbtn {
+        background-color: lightgreen;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        padding-right: 10px;
+        padding-left: 10px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        margin: 5px;
+        font-weight: bold;
+      }
+      .pbtn:hover {
+        background-color: green;
+        color: lightgreen;
+        border-style: solid;
+      }
+
+      p {
+        padding: 3px;
+      }
+      .more {
+        border: none;
+        border-radius: 10px;
+        padding: 5px;
+        height: 35px;
+        background-color: lightgreen;
+        cursor: pointer;
+        border-color: green;
+        border-style: solid;
+        transition: all 0.3s ease-in-out;
+        font-weight: bold;
+
+
+      }
+
+
+
+      .low {
+        color: gray;
+        margin: 3px;
+      }
+      .fivefour {
+        color: brown;
+        margin: 3px;
+      }
+      .three {
+        color: brown;
+        margin: 3px;
+      }
+      .two {
+        color: lightgray;
+        margin: 3px;
+      }
+      .one {
+        color: yellow;
+        margin: 3px;
+      }
+      .more:hover {
+        border-color: lightgreen;
+        background-color: green;
+        transform: scale(1.1);
+      }
+            .logo {
+        width: 350px;
+        height: 85px;
+      }
+
+      .esportes {
+        background-color: lightgreen;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 10px;
+        width: 200px;
+        position: fixed;
+        left: 15px;
+        border-style: solid;
+        border-color: green;
+      }
+
+      .esportes a {
+        font-weight: bold;
+        color: black;
+        padding: 3px;
+        margin: 3px;
+      }
+
+      .esportes a:hover {
+        background-color: yellow;
+        color: black;
+      }
+
+      hr {
+        width: 100%;
+        height: 3px;
+        border: none;
+        background-color: green;
+      }
+
+      .footer {
+        border-radius: 10px;
+        background-color: lightgreen;
+        border: solid;
+        border-color: green;
+        border-width: 3px;
+        height: 300px;
+        display: flex;
+      }
+      .contato1 {
+        width: 300px;
+        padding: 30px;
+        background-color: lightgreen;
+        border-style: single;
+        border-color: cyan;
+        /*display: flex;*/
+      }
+      .contato2 {
+        width: 300px;
+        background-color: lightgreen;
+        border-style: single;
+        border-color: cyan;
+        position: absolute;
+        right: 15px;
+        padding: 15px;
+        /*display: flex;*/
+      }
+
+      .linkbtn {
+        text-decoration: none;
+      }
+
+        .footerimg {
+          width: 250px;
+          align-self: center;
+        }
+
+
+
+
+
+    .player-text {
+      position: absolute;
+      background-color: lightgreen;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 300px;
+      border-style: solid;
+      border-color: green;
+      border-width: 2px;
+    }
+    .hover-effect {
+            position: relative;
+            display: inline-block;
+        }
+
+        .hover-effect::before,
+        .hover-effect::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: blue; /* lighter shade of blue */
+            transition: width 0.3s ease-in-out;
+        }
+
+        .hover-effect::before {
+            left: 0;
+        }
+
+        .hover-effect::after {
+            right: 0;
+        }
+
+        .hover-effect:hover::before,
+        .hover-effect:hover::after {
+            width: 100%; /* grow to 100% width */
+        }
+        .close-popup {
+            color: red;
+            background: transparent;
+            border: transparent;
+            cursor: pointer;
+            transition: 0.3s ease;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .popup {
+            background-color: lightgreen;
+            border-radius: 10px;
+            border: solid 2px green;
+            width: 15%;
+            height: 40%;
+            position: fixed;
+            right: 15px;
+            bottom: 15px;
+            display: block;
+            padding: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .close-popup:hover {
+            transform: scale(1.1);
+        }
+
+        .popup.closed {
+            transform: translateY(100%);
+        }
+        .popup.opened {
+            transform: translateY(0%);
+        }
+
+        span {font-weight: bold;}
+        iframe {
+            border: solid 5px green;
+            border-radius: 10px;
+        }
+
+        .body {
+          width: 100%;
+          background-color: lightgreen;
+        }
+
+        #word-box {
+            margin: 20px;
+            padding: 20px;
+            border: 3px solid green;
+            min-height: 200px;
+            border-radius: 15px;
+            font-size: 30px;
+        }
+
+        #word-box span {
+            color: black;
+        }
+
+        #word-box span.correct {
+            color: #404040;
+        }
+
+        #word-box span.incorrect {
+            color: red;
+        }
+
+        #user-input {
+            margin: 20px;
+            padding: 10px;
+            color: black;
+            background: transparent;
+            
+            border: 3px solid green;
+            border-radius: 10px;
+            width: 90%;
+            font-size: 30px;
+        }
+
+        .current {
+            text-decoration: underline;
+        }
+
+        .word-count {
+            padding: 5px;
+            margin: 20px;
+            margin-top: 10px;
+            background: transparent;
+            border: transparent;
+            border-bottom: 5px solid green;
+            color: black;
+        }
+
+        #start-button {
+          background-color: lightgreen;
+          border: 2px solid green;
+        }
+
+
+    </style>
+    <script>
+      function redirect(esporte, pos) {
+        var esportesDiv = document.getElementById('esportesDiv');
+        if (esporte === 'esportes') {
+          //console.log(esportesDiv.style.display)
+          if (esportesDiv.style.display === 'none') {
+           //console.log("none block");
+            esportesDiv.style.display = 'block';
+        }else{
+           esportesDiv.style.display = 'none';
+            //console.log("block none");
+         }
+         
+          } else {
+            if (pos) {
+              window.location.href = `${esporte}.${pos}.html`;
+            }else{
+              window.location.href = `${esporte}.html`;
+            }
+          }
+        }
+        
+        //DIVISOR
+  document.addEventListener('DOMContentLoaded', function() {
+    var spawnButtons = document.querySelectorAll('.spawnButton');
+    var container = document.getElementById('container');
+    var currentDiv = null;
+
+    function spawnDiv(event, customText) {
+      // Remove the existing div if present
+      if (currentDiv) {
+        container.removeChild(currentDiv);
+        currentDiv = null;
+      }
+
+      // Create the div element
+      var div = document.createElement('div');
+      div.className = 'player-text';
+      div.textContent = customText;
+
+      // Create the despawn button
+      var despawnButton = document.createElement('button');
+      despawnButton.textContent = 'Sair';
+      despawnButton.className = 'more';
+      despawnButton.addEventListener('click', function() {
+        container.removeChild(div);
+        currentDiv = null;
+      });
+
+      // Append the despawn button to the div
+      div.appendChild(despawnButton);
+
+      // Set the position of the div below the mouse cursor
+      div.style.position = 'absolute';
+      div.style.left = event.pageX + 'px';
+      div.style.top = (event.pageY + 40) + 'px';
+
+      // Append the div to the container
+      container.appendChild(div);
+      currentDiv = div;
+    }
+
+    for (var i = 0; i < spawnButtons.length; i++) {
+      spawnButtons[i].addEventListener('click', function(event) {
+        var customText = event.target.getAttribute('data-text');
+        spawnDiv(event, customText);
+      });
+    }
+  });
+
+  function closePopup() {
+            let popup = document.getElementById("popup");
+            popup.classList.remove("opened");
+            popup.classList.add("closed");
+            setTimeout(function() {
+                popup.style.display = "none";
+            }, 500);
+        }
+
+        function openPopup() {
+            let popup = document.getElementById("popup");
+            popup.style.display = "block";
+            setTimeout(function() {
+                popup.classList.remove("closed");
+                popup.classList.add("opened");
+            }, 10);
+        }
+
+        // Open the popup by default
+        window.addEventListener('DOMContentLoaded', openPopup); //open popup right on page load
+
+</script>
+  </head>
+  <header>
+    <div class='logomenu'>
+      <h1><img src="Melhores10.png" class="logo"></h1>
+    </div>
+    <div class='menu'>
+
+      <button class='menubtn' onclick="redirect('index')">Início</button>
+      <button class='menubtn' onclick="redirect('esportes')">Esportes</button>
+      <button class='menubtn' onclick="redirect('contato')">Contato</button>
+     <button class='menubtn' onclick="redirect('git')">Outros</button>
+    </div>
+  </header>
+  <body>
+  <div id="esportesDiv"  class="esportes" style="display: none;">
+    <ul>
+    <li><a href="contato.html">Contato</a></li>
+    <li><a href="futebol.html">Futebol</a></li>
+    <li><a href="basquete.html">Basquete</a></li>
+    <li><a href="tenis.html">Tênis</a></li>
+    <li><a href="git.html">Outros</a></li>
+    </ul>
+    <button class="more" onclick="redirect('esportes')">Sair</button>
+  </div>
+    <h1>Outros</h1>
+    <h2>Popup e efeito</h2>
+    <p>Olá, aqui você encontra os recursos mostrados no popup, siga os passos presentes no GitHub (Readme.md) para acrescentá-los ao seu website!</p>
+    <center><iframe src="https://github.com/umapessoa10/Popup-effects-html" height="65%" width="65%" title="Source"></iframe></center>
+    <div class="body">
+      <h2>WPM</h2>
+      <p>Veja suas palavras por minuto com nosso contador, se desafie a conseguir scores cada vez mais altos!</p>
+      
+        <center><h1>WPM Counter | Domin</h1></center>
+        <div id="word-box"></div>
+        <input type="text" id="user-input" placeholder="Type the words here" />
+        <input type="number" id="word-count-input" placeholder="Enter word count" class="word-count"/>
+        <button id="start-button">Start</button>
+    <script>
+    var words = [
+      "the", "be", "to", "of", "and", "a", "in", "that", "have", "I", "it", "for", "not", "on", "with", "he", "as",
+      "you", "do", "at", "this", "but", "his", "by", "from", "they", "we", "say", "her", "she", "or", "an", "will",
+      "my", "one", "all", "would", "there", "their", "what", "so", "up", "out", "if", "about", "who", "get", "which",
+      "go", "me", "when", "make", "can", "like", "time", "no", "just", "him", "know", "take", "person", "into", "year",
+      "your", "good", "some", "could", "them", "see", "other", "than", "then", "now", "look", "only", "come", "its",
+      "over", "think", "also", "back", "after", "use", "two", "how", "our", "work", "first", "well", "way", "even",
+      "new", "want", "because", "any", "these", "give", "day", "most", "us"
+      // Add more words as needed to increase the length of the list
+    ];
+    var currentIndex = 0;
+    var userTypedWord = '';
+    var startTime = null;
+    
+    function randomizeWords(words, wordCount) {
+      let wordsClone = [...words]; // Create a clone of the original array
+      let randomizedWords = [];
+    
+      wordCount = Math.min(wordCount, wordsClone.length); // Limit word count if it exceeds array length
+    
+      while (randomizedWords.length < wordCount) {
+        let randomIndex = Math.floor(Math.random() * wordsClone.length);
+        randomizedWords.push(wordsClone[randomIndex]);
+        wordsClone.splice(randomIndex, 1);
+      }
+    
+      return randomizedWords;
+    }
+    
+    function renderWords(wordss) {
+      var html = '';
+      for (var i = 0; i < wordss.length; i++) {
+        var wordClass = '';
+        if (i < currentIndex) {
+          wordClass = 'correct';
+        } else if (i === currentIndex) {
+          wordClass = 'current';
+        }
+        html += '<span class="' + wordClass + '">' + wordss[i] + '</span> ';
+      }
+      document.getElementById('word-box').innerHTML = html;
+    }
+    
+    function checkWin() {
+      if (currentIndex === wordss.length) {
+        var endTime = new Date().getTime();
+        var timeTaken = (endTime - startTime) / 1000; // Calculate time taken in seconds
+        var wpm = (wordss.length / timeTaken) * 60; // Calculate WPM
+        wpm = Math.round(wpm); // Round the value to a whole number
+        alert("Congratulations! You've completed the words.\nTime taken: " + timeTaken.toFixed(2) + " seconds\nWPM: " + wpm);
+        document.getElementById('user-input').disabled = true;
+        document.getElementById('start-button').disabled = false; // Enable the start button
+      }
+    }
+    
+    function restartTest() {
+      currentIndex = 0;
+      userTypedWord = '';
+      startTime = null;
+      document.getElementById('user-input').value = '';
+      document.getElementById('user-input').disabled = false;
+      document.getElementById('start-button').disabled = true; // Disable the start button
+    }
+    
+    document.getElementById('start-button').addEventListener('click', function() {
+      var wordCountInput = parseInt(document.getElementById('word-count-input').value);
+      if (!isNaN(wordCountInput) && wordCountInput > 0 && wordCountInput <= words.length) {
+        var wordCount = wordCountInput;
+        wordss = randomizeWords(words, wordCount);
+        renderWords(wordss);
+        restartTest();
+      } else {
+        alert("Please enter a valid word count between 1 and " + words.length);
+      }
+    });
+    
+    document.getElementById('user-input').addEventListener('keydown', function(e) {
+      if (e.key === " ") {
+        e.preventDefault();
+        var typedWord = userTypedWord.trim();
+        if (typedWord === wordss[currentIndex]) {
+          if (currentIndex === 0) {
+            startTime = new Date().getTime(); // Start the timer when the first word is typed correctly
+          }
+          currentIndex++;
+          document.getElementById('user-input').value = '';
+          userTypedWord = '';
+          renderWords(wordss);
+          checkWin();
+        }
+      }
+    });
+    
+    document.getElementById('user-input').addEventListener('input', function(e) {
+      userTypedWord = e.target.value;
+      var typedWord = userTypedWord.trim();
+      if (typedWord === wordss[currentIndex] || wordss[currentIndex].startsWith(typedWord)) {
+        document.getElementById('word-box').children[currentIndex].className = 'current';
+      } else {
+        document.getElementById('word-box').children[currentIndex].className = 'incorrect';
+      }
+    });
+    
+    
+    
+    </script>
+    </html>
+    </div>
+    <h2>Enigma</h2>
+    <p>Vá para um enigma, tenha um desafio envolvente que conta com diversas criptografias e pesquisas para ser compeltas!</p>
+    <button class="more" onclick="redirect('enigma')">Vá para o Enigma!</button>
+  </body>
+  <br>
+  <br>
+  <br>
+  <hr>
+  <footer>
+    <div class="footer">
+      <div class="contato1">
+      <h3><button class="linkbtn more" style="font-size: 20px"><a href="contato.html">Contato</a></button></h3>
+      <h3>Criadores: Felipe D. e Loureço M. - Programação por Felipe D.</h3>
+      <center><img src="Melhores10.png" class="footerimg"></center>
+    </div>
+    
+    <div class="contato2">
+      <h3><button class="linkbtn more" style="font-size: 20px"><a href="contato.html">Contato</a></button></h3>
+      <h3>Lembrete: Este top 10 contém apenas a opinião de nossos fundadores, sinta-se livre para opinar conforme você acha</h3>
+
+    </div>
+    </div>
+  </footer>
+</html>
